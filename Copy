@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Copiar Texto</title>
+    <style>
+        .copy-button {
+            margin-top: 10px;
+            padding: 10px 20px;
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+            cursor: pointer;
+            font-size: 16px;
+        }
+        .copy-button:hover {
+            background-color: #45a049;
+        }
+    </style>
+</head>
+<body>
+    <div>
+        <p id="text-to-copy">Selecione este texto e clique no botão abaixo para copiá-lo para a área de transferência.</p>
+        <button class="copy-button" onclick="copySelectedText()">Copiar Texto Selecionado</button>
+    </div>
+
+    <script>
+        function copySelectedText() {
+            const selectedText = window.getSelection().toString();
+            if (selectedText) {
+                const textarea = document.createElement('textarea');
+                textarea.value = selectedText;
+                document.body.appendChild(textarea);
+                textarea.select();
+                document.execCommand('copy');
+                document.body.removeChild(textarea);
+                alert('Texto copiado para a área de transferência!');
+            } else {
+                alert('Por favor, selecione o texto que deseja copiar.');
+            }
+        }
+    </script>
+</body>
+</html>
